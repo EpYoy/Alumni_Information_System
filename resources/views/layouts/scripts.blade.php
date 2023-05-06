@@ -12,6 +12,7 @@
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="{{ asset('js/now-ui-dashboard.min.js?v=1.5.0') }}"type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="{{ asset('demo/demo.js') }}"></script>
+  
   <script>
     $(document).ready(function() {
       demo.initDashboardPageCharts();
@@ -22,4 +23,4 @@
   if (path.includes("layouts/table")) {
     document.querySelector(".nav li.active").classList.add("active");
   }
-</script>
+ 

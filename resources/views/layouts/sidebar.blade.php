@@ -1,10 +1,10 @@
 <div class="sidebar" data-color="blue">
   <div class="logo">
     <a href="http://www.creative-tim.com" class="simple-text logo-mini">
-      CT
+      SL
     </a>
     <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-      Creative Tim
+      Alumni
     </a>
   </div>
   <div class="sidebar-wrapper" id="sidebar-wrapper">
@@ -28,7 +28,7 @@
           <p>Table List</p>
         </a>
       </li>
-      <li>
+      <!--<li>
       <a href="{{ ('alumni') }}" wire:click="doSomething">
         <i class="now-ui-icons education_atom"></i>
         <p>Alumni</p>
@@ -45,7 +45,7 @@
           <i class="now-ui-icons ui-1_bell-53"></i>
           <p>Notifications</p>
         </a>
-      </li>
+      </li>-->
       <li class="{{ Request::is('layouts/profile') ? 'active' : '' }}">
       <a href="{{ route('layouts.profile') }}">
           <i class="now-ui-icons design_bullet-list-67"></i>
