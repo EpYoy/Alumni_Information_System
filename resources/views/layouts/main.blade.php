@@ -13,10 +13,9 @@
       <!-- Navbar -->
       @include('layouts.nav')
       <!-- End Navbar -->
-   
+      <div class="panel-header panel-header-sm"></div>
       @yield('content')
-      
-      @include('layouts.footer')
+ 
       @include('layouts.scripts')
       @livewireScripts
 </body>

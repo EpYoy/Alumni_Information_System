@@ -45,13 +45,13 @@
           <i class="now-ui-icons ui-1_bell-53"></i>
           <p>Notifications</p>
         </a>
-      </li>-->
+      </li>
       <li class="{{ Request::is('layouts/profile') ? 'active' : '' }}">
       <a href="{{ route('layouts.profile') }}">
           <i class="now-ui-icons design_bullet-list-67"></i>
           <p>Edit Profile</p>
         </a>
-      </li>
+      </li>-->
      
     </ul>
   </div>

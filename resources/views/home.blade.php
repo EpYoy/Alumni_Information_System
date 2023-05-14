@@ -2,7 +2,7 @@
 <title>Dashboard</title>
 @section('content')
 <main>
-<div class="panel-header panel-header-sm"></div>
+
         
         <div class="container-fluid px-4">
             <ol class="breadcrumb mb-4"></ol>

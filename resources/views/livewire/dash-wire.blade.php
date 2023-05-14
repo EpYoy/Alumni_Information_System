@@ -1,10 +1,9 @@
-<main>
-    <div class="container-fluid px-4">
-        <h1 class="mt-4">Save Alumni</h1>
+<div class="container-fluid px-4">
+        <h1 class="mt-4"></h1>
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table me-1"></i>
-                Input Data
+                Add Alumni
             </div>
             <div class="card-body">
             <form wire:submit.prevent="saveAlumni">
@@ -66,8 +65,35 @@
                     </div>
             </div>
         </div>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                Saved List
+            </div>
+            <div class="card-body">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Address</th>
+                <th>Year Graduated</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($alumniList as $alumni)
+                <tr>
+                    <td>{{ $alumni->first_name }} {{ $alumni->middle_name }} {{ $alumni->last_name }}</td>
+                    <td>{{ $alumni->gender }}</td>
+                    <td>{{ $alumni->address }}</td>
+                    <td>{{ $alumni->year_graduated }}</td>
 
+                    <td>
+                        <button class="btn btn-danger" wire:click="deleteAlumni({{ $alumni->id }})">Remove</button>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 </div>
-</main>
-
-

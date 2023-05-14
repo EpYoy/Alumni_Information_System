@@ -10,11 +10,11 @@ class Alumni extends Model
     use HasFactory;
 
     protected $fillable = [
-        'firstName',
-        'middle_Name',
+        'first_name',
+        'middle_name',
         'last_name',
         'gender',
-        'year',
-        'homeAddress',
+        'year_graduated',
+        'address',
     ];
 }
