@@ -13,3 +13,8 @@
   <link href="{{ asset('demo/demo.css') }}"rel="stylesheet" />
 
   @livewireStyles
+
+@livewireScripts
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ <x-livewire-alert::scripts />
+ <x-livewire-alert::flash />

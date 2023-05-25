@@ -23,6 +23,7 @@
     "dependencies": {
         "chart.js": "^4.3.0",
         "livewire": "^0.6.1",
+        "sortablejs": "^1.15.0",
         "sweetalert2": "^11.7.5"
     }
 }

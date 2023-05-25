@@ -4,9 +4,13 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Alumni;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
+
 
 class DashWire extends Component
 {
+    use LivewireAlert;
+
     public $first_name;
     public $middle_name;
     public $last_name;
@@ -14,6 +18,11 @@ class DashWire extends Component
     public $year_graduated;
     public $address;
     public $searchTerm = '';
+    public $alumniId;
+    public $alumniAll;
+    public $updatedAlumniCount = 0;
+
+
 
     public function saveAlumni()
     {
@@ -28,13 +37,55 @@ class DashWire extends Component
 
         Alumni::create($validatedData);
 
-        session()->flash('success', 'Alumni added successfully.');
-
+        $this->alert('success', $this->first_name.' '.$this->last_name.' has been added', ['toast' => false, 'position' => 'center']);
+    
         $this->resetFields();
+        $this->alumniAll = Alumni::all();
+        $this->emit('alumniSaved'); 
     }
+
+    public function editAlumni($id)
+    {
+        $alumni = Alumni::findOrFail($id);
+
+        $this->alumniId = $alumni->id;
+        $this->first_name = $alumni->first_name;
+        $this->middle_name = $alumni->middle_name;
+        $this->last_name = $alumni->last_name;
+        $this->gender = $alumni->gender;
+        $this->year_graduated = $alumni->year_graduated;
+        $this->address = $alumni->address;
+    }
+
+    // Method to update the alumni data
+    public function updateAlumni()
+    {
+        $validatedData = $this->validate([
+            'first_name' => 'required|string',
+            'middle_name' => 'nullable|string',
+            'last_name' => 'required|string',
+            'gender' => 'required|string',
+            'year_graduated' => 'required|integer',
+            'address' => 'required|string',
+        ]);
+
+        $alumni = Alumni::findOrFail($this->alumniId);
+        $alumni->update($validatedData);
+
+      
+        $this->resetFields();
+        $this->alumniAll = Alumni::all();
+        $this->updatedAlumniCount++;
+        $this->emit('alumniUpdated');
+
+        $this->alert('success', $alumni->first_name.' '.$alumni->last_name.' has been updated', ['toast' => false, 'position' => 'center']);
+
+    }
+
 
     private function resetFields()
     {
+        $this->alumniId = null;
         $this->first_name = null;
         $this->middle_name = null;
         $this->last_name = null;
@@ -42,53 +93,45 @@ class DashWire extends Component
         $this->year_graduated = null;
         $this->address = null;
     }
-
       
     public function deleteAlumni($id)
     {
         $alumnus = Alumni::find($id);
         $alumnus->delete();
-    }
-
-    public function editAlumni($id)
-    {
-        $this->alumniId = $id;
-        $alumni = Alumni::find($id);
-        $this->first_name = $alumni->first_name;
-        $this->middle_name = $alumni->middle_name;
-        $this->last_name = $alumni->last_name;
-        $this->gender = $alumni->gender;
-        $this->year_graduated = $alumni->year_graduated;
-        $this->address = $alumni->address;
     
-        $this->openEditModal = true;
+        $this->alert('success', 'Successfully deleted!');
+        $this->alumniAll = Alumni::all();
+        $this->emit('alumniRemoved');
     }
+    
 
     public function getAlumniList()
     {
-        $alumniList = Alumni::all();
+        $alumniList = Alumni::where(function ($query) {
+            $query->where('first_name', 'LIKE', '%' . $this->searchTerm . '%')
+                ->orWhere('last_name', 'LIKE', '%' . $this->searchTerm . '%');
+        })->get();
+    
         return $alumniList;
     }
-
-    public function openEditModal($id)
-{
-    $alumni = Alumni::find($id);
-    $this->selectedAlumni = $alumni;
-    $this->first_name = $alumni->first_name;
-    $this->middle_name = $alumni->middle_name;
-    $this->last_name = $alumni->last_name;
-    $this->gender = $alumni->gender;
-    $this->year_graduated = $alumni->year_graduated;
-    $this->address = $alumni->address;
-    $this->editModalOpen = true;
-}
-
-
+    
 
     public function render()
     {
         $alumniList = $this->getAlumniList();
-        return view('livewire.dash-wire', ['alumniList' => $alumniList]);
+        $removedAlumniCount = Alumni::onlyTrashed()->count();
+    
+        return view('livewire.dash-wire', ['alumniList' => $alumniList, 'removedAlumniCount' => $removedAlumniCount])
+            ->extends('layouts.app')
+            ->section('content');  
     }
     
+    public function mount()
+    {
+        $this->dispatchBrowserEvent('alumniSaved');
+        $this->alumniAll = Alumni::all();
+    }
+
 }
+
+

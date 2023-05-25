@@ -28,8 +28,15 @@
           <p>Table List</p>
         </a>
       </li>
-      <!--<li>
-      <a href="{{ ('alumni') }}" wire:click="doSomething">
+      
+      <!--<li class="{{ Request::is('layouts/image') ? 'active' : '' }}">
+        <a href="{{ route('layouts.image') }}">
+        <i class="now-ui-icons education_atom"></i>
+          <p>Add Image</p>
+        </a>
+      </li>
+      <li>
+      <a href="" wire:click="doSomething">
         <i class="now-ui-icons education_atom"></i>
         <p>Alumni</p>
       </a>
@@ -46,13 +53,7 @@
           <p>Notifications</p>
         </a>
       </li>
-      <li class="{{ Request::is('layouts/profile') ? 'active' : '' }}">
-      <a href="{{ route('layouts.profile') }}">
-          <i class="now-ui-icons design_bullet-list-67"></i>
-          <p>Edit Profile</p>
-        </a>
-      </li>-->
-     
+  -->
     </ul>
   </div>
 </div>

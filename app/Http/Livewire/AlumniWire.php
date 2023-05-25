@@ -4,9 +4,11 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Alumni;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class AlumniWire extends Component
 {
+    use LivewireAlert;
     public $first_name;
     public $middle_name;
     public $last_name;
@@ -28,7 +30,8 @@ class AlumniWire extends Component
 
         Alumni::create($validatedData);
 
-        session()->flash('success', 'Alumni added successfully.');
+               $this->alert('success', $this->first_name.' '.$this->last_name.' has been added', ['toast' => false, 'position' => 'center']);
+
 
         $this->resetFields();
     }

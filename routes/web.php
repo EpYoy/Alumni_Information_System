@@ -35,8 +35,15 @@ Route::get('layouts/profile', function () {
     return view('layouts.profile');
 })->name('layouts.profile');
 
+Route::get('layouts/image', function () {
+    return view('layouts.image');
+})->name('layouts.image');
+
 
 Auth::routes();
+
+Route::get('/alumni/export', 'App\Http\Livewire\DashWire@export')->name('alumni.export');
+
 
 Route::post('/alumni/store', 'AlumniController@store')->name('alumni.store');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

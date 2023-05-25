@@ -1,5 +1,5 @@
 @extends('layouts.main')
-<title>Table List</title>
+<title>Add Alumni</title>
 @section('content')
  @livewire('alumni-wire')
 @endsection

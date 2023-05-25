@@ -5,6 +5,8 @@ try {
 } catch (e) {}
 
 import Swal from 'sweetalert2';
+import Sortable from 'sortablejs';
+
 
 
 /**
