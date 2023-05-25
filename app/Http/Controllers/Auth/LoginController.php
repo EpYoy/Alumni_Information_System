@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class LoginController extends Controller
 {
@@ -18,6 +19,7 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
+    use LivewireAlert;
 
     use AuthenticatesUsers;
 
