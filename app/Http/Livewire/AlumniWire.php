@@ -9,13 +9,13 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 class AlumniWire extends Component
 {
     use LivewireAlert;
+    
     public $first_name;
     public $middle_name;
     public $last_name;
     public $gender;
     public $year_graduated;
     public $address;
-    public $searchTerm = '';
 
     public function saveAlumni()
     {
@@ -29,10 +29,7 @@ class AlumniWire extends Component
         ]);
 
         Alumni::create($validatedData);
-
-               $this->alert('success', $this->first_name.' '.$this->last_name.' has been added', ['toast' => false, 'position' => 'center']);
-
-
+        $this->alert('success', $this->first_name.' '.$this->last_name.' has been added', ['toast' => false, 'position' => 'center']);
         $this->resetFields();
     }
 

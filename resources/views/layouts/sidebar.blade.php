@@ -25,7 +25,7 @@
       <li class="{{ Request::is('layouts/table') ? 'active' : '' }}">
         <a href="{{ route('layouts.table') }}">
           <i class="now-ui-icons design_bullet-list-67"></i>
-          <p>Table List</p>
+          <p>List</p>
         </a>
       </li>
       

@@ -149,6 +149,8 @@
                         <td>{{ $alumni->year_graduated }}</td>
                         <td class="text-right">
                             <button class="btn btn-success" wire:click="editAlumni({{ $alumni->id }})" data-toggle="modal" data-target="#editModal">Edit</button>
+                        </td>
+                        <td class="text-right">
                             <button class="btn btn-danger" wire:click="deleteAlumni({{ $alumni->id }})">Remove</button>
                         </td>
                     </tr>
@@ -212,4 +214,7 @@
                     </div>
                 </div>
             </div>
+
+
+            
 
