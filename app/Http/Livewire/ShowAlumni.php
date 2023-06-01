@@ -7,11 +7,13 @@ use Livewire\Component;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
+use Livewire\WithPagination;
 
 class ShowAlumni extends Component
 {
     use LivewireAlert;
     use WithFileUploads;
+    use WithPagination;
 
     protected $alumni;
     public $first_name;
@@ -24,6 +26,7 @@ class ShowAlumni extends Component
     public $uploadProgress = 0; 
     public $file; 
     public $files = []; 
+    protected $paginationTheme = 'bootstrap'; // Optional: Set the pagination theme
 
     public function deleteAlumni($id)
     {
@@ -122,11 +125,5 @@ class ShowAlumni extends Component
         ])->with('paginator', $alumni->links('vendor.pagination.bootstrap-4'));
     }
     
-
-
-    public function mount()
-    {
-        $this->alumni = Alumni::paginate(5);
-    }
 
 }

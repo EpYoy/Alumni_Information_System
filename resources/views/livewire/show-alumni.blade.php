@@ -112,9 +112,9 @@
                 </table>
                
             @endif
+            {{ $alumni->links() }}
         </div>
     </div>
-    {{ $alumni->links()}}
 
     <div class="card mb-4">
         <div class="card-header">
@@ -160,6 +160,7 @@
                 </ul>
             @endif
         </div>
+     
     </div>
 
     @push('scripts')

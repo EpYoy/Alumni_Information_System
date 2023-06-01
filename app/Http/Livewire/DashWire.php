@@ -3,12 +3,15 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Livewire\WithPagination;
 use App\Models\Alumni;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class DashWire extends Component
 {
-    use LivewireAlert;
+    use LivewireAlert; 
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap'; // Optional: Set the pagination theme
     
     private $alumni;
     public $first_name;
@@ -102,18 +105,24 @@ class DashWire extends Component
         $alumniList = Alumni::where(function ($query) {
             $query->where('first_name', 'LIKE', '%' . $this->searchTerm . '%')
                 ->orWhere('last_name', 'LIKE', '%' . $this->searchTerm . '%');
-        })->get();
+        });
+    
         return $alumniList;
     }
+    
 
     public function render()
     {
-        $alumniList = $this->getAlumniList();
+        $alumniList = $this->getAlumniList()->paginate(5);
+
         $removedAlumniCount = Alumni::onlyTrashed()->count();
-        return view('livewire.dash-wire', ['alumniList' => $alumniList, 'removedAlumniCount' => $removedAlumniCount])
+
+        return view('livewire.dash-wire', compact('alumniList', 'removedAlumniCount'))
             ->extends('layouts.app')
             ->section('content');  
     }
+
+    
     
     public function mount()
     {

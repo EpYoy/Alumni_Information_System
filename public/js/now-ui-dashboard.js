@@ -31,7 +31,23 @@
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
  */
+ import Sortable from 'sortablejs';
+ window.Sortable = Sortable;
 
+ document.addEventListener('livewire:load', function () {
+  if (Livewire.components.has('dash-wire')) {
+      Livewire.hook('message.processed', (message, component) => {
+          if (message.updateQueue.find(e => e.method.startsWith('updateAlumniOrder'))) {
+              // Re-initialize the sortable functionality after Livewire updates the DOM
+              window.Sortable.create(document.querySelector('tbody[wire:sortable]'), {
+                  handle: '.sortable-handle',
+              });
+          }
+      });
+  }
+});
+
+ 
 (function() {
   isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
 
