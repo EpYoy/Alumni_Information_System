@@ -2,8 +2,6 @@
 <title>Dashboard</title>
 @section('content')
 <main>
-
-        
         <div class="container-fluid px-4">
             <ol class="breadcrumb mb-4"></ol>
         </div>

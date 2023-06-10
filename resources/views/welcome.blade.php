@@ -4,8 +4,6 @@
 <head>
   @include('welcome.styles')
   <title>Alumni Association</title>
-
-
 </head>
 
 <body>
